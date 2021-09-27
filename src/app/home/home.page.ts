@@ -37,6 +37,7 @@ export class HomePage {
 
     if(nom.trim().length >= 3)
     {
+      // for...
       let id = localStorage.length + 1
       localStorage.setItem(id.toString(), nom);
       this.mensaje = "Guardado con éxito: " + nom;
