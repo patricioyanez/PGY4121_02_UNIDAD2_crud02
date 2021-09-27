@@ -13,8 +13,24 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="4">Nombre</ion-col>
+      <ion-col size="8">
+        <ion-input type="text" placeholder="ej: Juan" #nombre></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="guardar(nombre)" expand="block" shape="round">
+          Guardar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
+  <div *ngIf="mensaje">
+    <ion-text color="primary">
+      <h1>{{mensaje}}</h1>
+    </ion-text>
   </div>
 </ion-content>
