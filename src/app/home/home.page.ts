@@ -32,7 +32,7 @@ export class HomePage {
     }
   }
   guardar(nombre: HTMLInputElement)
-  {
+  { // validar que no se repitan los datos: for
     const nom = nombre.value; //recupera la info escrita por el usuario
 
     if(nom.trim().length >= 3)
