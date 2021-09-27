@@ -33,4 +33,17 @@
       <h1>{{mensaje}}</h1>
     </ion-text>
   </div>
+  <br><br>
+  <ion-button (click)="listar()" expand="block" shape="round">
+    Listar
+  </ion-button>
+  <div *ngIf="listado">
+    <ion-list>
+      <div *ngFor="let aux of listado">
+        <ion-item>
+          <ion-label>{{aux | uppercase}}</ion-label>
+        </ion-item>
+      </div>
+    </ion-list>
+  </div>
 </ion-content>

@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
   mensaje : string;
+  listado = [];
   constructor() {}
 
   ngOnInit()
@@ -21,7 +22,15 @@ export class HomePage {
     console.log(x);
     */
   }
-
+  
+  listar()
+  {
+    this.listado = [];
+    for(let indice = 1; indice <= localStorage.length; indice++)
+    {
+      this.listado.push(localStorage.getItem(indice.toString()));
+    }
+  }
   guardar(nombre: HTMLInputElement)
   {
     const nom = nombre.value; //recupera la info escrita por el usuario
