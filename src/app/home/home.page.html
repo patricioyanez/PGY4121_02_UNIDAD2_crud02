@@ -37,7 +37,7 @@
   <ion-button (click)="listar()" expand="block" shape="round">
     Listar
   </ion-button>
-  <div *ngIf="listado">
+  <div *ngIf="listado.length > 0">
     <ion-list>
       <div *ngFor="let aux of listado">
         <ion-item>
@@ -47,3 +47,10 @@
     </ion-list>
   </div>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>    
+    <ion-button (click)="limpiar()" slot="end" fill="clear">
+      <ion-icon slot="icon-only" name="trash"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
