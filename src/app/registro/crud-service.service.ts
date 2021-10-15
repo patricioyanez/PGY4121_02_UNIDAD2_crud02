@@ -1,11 +1,15 @@
+// este archivo se crea:
+// ionic generate service crudService
+
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage-angular';
+// npm install @ionic/storage-angular
+import { Storage } from '@ionic/storage-angular'; //vue , react, js VAnilla
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrudServiceService {
-
+  dato = [];
   constructor(private storage: Storage) { 
     this.init();
   }
@@ -15,14 +19,25 @@ export class CrudServiceService {
     await this.storage.create();
   }
 
-  async agregar(key: string, valor: any)
+  //async agregar(key: string, valor: any)
+  async agregar(valor: any) // json
   {
-    await this.storage.set(key, valor)
+    let id = await this.storage.length() +  1;
+    await this.storage.set(id.toString(), valor)
   }
 
-  obtener(key: string)
+ obtener(rut: string)
   {
-    return this.storage.get(key);
+    this.storage.forEach((v,k) => {    
+      if(v[0].rut==rut)
+      {
+        return  this.dato.push(v);
+
+      }
+
+    });
+
+    //return this.storage.get(key);
   }
 
 }

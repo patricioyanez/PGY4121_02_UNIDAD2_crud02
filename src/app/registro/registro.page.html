@@ -8,23 +8,36 @@
   <div class="ion-text-center"><h3>Registro estudiante</h3></div>
   <ion-item>
     <ion-label position="floating">Rut</ion-label>
-    <ion-input placeholder="Ej: 20150300K"></ion-input>
+    <ion-input placeholder="Ej: 20150300K" #txtRut value="101"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Nombre</ion-label>
-    <ion-input placeholder="Ej: Juan Aros"></ion-input>
+    <ion-input placeholder="Ej: Juan Aros" #txtNombre></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Fono (fijo o celular)</ion-label>
-    <ion-input placeholder="Ej: +56910020030"></ion-input>
+    <ion-input placeholder="Ej: +56910020030" #txtFono></ion-input>
   </ion-item>  
+
+
+  <div *ngIf="rut">
+    <ion-text color="secondary" class="ion-text-center">
+      <h2>Datos encontrados</h2>
+    </ion-text>
+    <ion-text color="primary">
+      <h3>{{nombre}}</h3>
+    </ion-text>
+  </div>
+
+
+
 </ion-content>
 <ion-footer>
   <ion-toolbar>    
-    <ion-button (click)="buscar()" fill="clear" slot="end">
+    <ion-button (click)="buscar(txtRut)" fill="clear" slot="end">
       <ion-icon slot="icon-only" name="search"></ion-icon>
     </ion-button>
-    <ion-button (click)="agregar()" fill="clear" slot="end">
+    <ion-button (click)="agregar(txtRut, txtNombre, txtFono)" fill="clear" slot="end">
       <ion-icon slot="icon-only" name="add"></ion-icon>
     </ion-button>
     <ion-buttons slot="start">
