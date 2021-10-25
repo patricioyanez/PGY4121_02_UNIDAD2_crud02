@@ -35,8 +35,14 @@ export class CrudServiceService {
         return;
       }
     });
-
     //return this.storage.get(key);
+  }
+  // CRUD: create read update delete
+  listar()
+  {
+    let listado = []
+    this.storage.forEach((v, k) => { listado.push(v);});
+    return listado;
   }
 
 }

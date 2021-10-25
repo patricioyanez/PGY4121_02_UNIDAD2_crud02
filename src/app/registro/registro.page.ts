@@ -10,7 +10,7 @@ export class RegistroPage implements OnInit {
   rut: string;
   nombre: string;
   fono: string;
-
+  listado = [];
   constructor(private crud: CrudServiceService, 
               private toast: ToastController) { }
 
@@ -79,9 +79,15 @@ export class RegistroPage implements OnInit {
   }
   async buscar(txtRut:HTMLInputElement)
   {
+    // TAREA: enviar mensajes al usuario cuando el rut no esta
     await this.crud.obtener(txtRut.value);
     this.rut = this.crud.dato[0].rut;
     this.nombre = this.crud.dato[0].nombre;
     this.fono = this.crud.dato[0].fono;
   }
+  async listar()
+  {
+    this.listado = this.crud.listar();
+  }
+
 }
