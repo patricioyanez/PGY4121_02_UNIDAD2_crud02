@@ -9,7 +9,7 @@ import { Storage } from '@ionic/storage-angular'; //vue , react, js VAnilla
   providedIn: 'root'
 })
 export class CrudServiceService {
-  dato = [];
+  dato:any;
   constructor(private storage: Storage) { 
     this.init();
   }
@@ -26,15 +26,14 @@ export class CrudServiceService {
     await this.storage.set(id.toString(), valor)
   }
 
- obtener(rut: string)
+  async obtener(rut: string)
   {
-    this.storage.forEach((v,k) => {    
+    await this.storage.forEach((v,k) => {    
       if(v[0].rut==rut)
-      {
-        return  this.dato.push(v);
-
+      {        
+        this.dato = v;
+        return;
       }
-
     });
 
     //return this.storage.get(key);

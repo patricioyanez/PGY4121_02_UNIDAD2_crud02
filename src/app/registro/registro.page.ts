@@ -27,25 +27,61 @@ export class RegistroPage implements OnInit {
   }
   async agregar(txtRut:HTMLInputElement, txtNombre:HTMLInputElement, txtFono:HTMLInputElement)
   {
+    if(txtRut.value.trim().length == 0)
+    {
+      const toast = await this.toast.create({
+        message: 'Debe especificar el rut.',
+        duration: 3000,
+        position: "middle",
+        color: "danger"
+      });
+      toast.present();
+
+    }
+    else if(txtNombre.value.trim().length == 0)
+    {
+      const toast = await this.toast.create({
+        message: 'Debe especificar el nombre.',
+        duration: 3000,
+        position: "middle",
+        color: "danger"
+      });
+      toast.present();
+
+    }
+    else if(txtFono.value.trim().length == 0)
+    {
+      const toast = await this.toast.create({
+        message: 'Debe especificar el fono.',
+        duration: 3000,
+        position: "middle",
+        color: "danger"
+      });
+      toast.present();
+    }
+    else
+    {
+
     // crear formato para almacenar todos estos datos
-    const datos = [{"rut": txtRut.value, "nombre": txtNombre.value, "fono": txtFono.value }];
-    this.crud.agregar(datos);
-    txtRut.value = "";
-    txtNombre.value = "";
-    txtFono.value = "";
-    const toast = await this.toast.create({
-      message: 'Los datos fueron guardados.',
-      duration: 2000,
-      position: "middle",
-      color: "primary"
-    });
-    toast.present();
+      const datos = [{"rut": txtRut.value, "nombre": txtNombre.value, "fono": txtFono.value }];
+      this.crud.agregar(datos);
+      txtRut.value = "";
+      txtNombre.value = "";
+      txtFono.value = "";
+      const toast = await this.toast.create({
+        message: 'Los datos fueron guardados.',
+        duration: 2000,
+        position: "middle",
+        color: "primary"
+      });
+      toast.present();
+    }
   }
-  buscar(txtRut:HTMLInputElement)
+  async buscar(txtRut:HTMLInputElement)
   {
-    this.crud.obtener(txtRut.value);
-    this.rut = this.crud.dato[0][0].rut;
-    this.nombre = this.crud.dato[0][0].nombre;
-    this.fono = this.crud.dato[0][0].fono;
+    await this.crud.obtener(txtRut.value);
+    this.rut = this.crud.dato[0].rut;
+    this.nombre = this.crud.dato[0].nombre;
+    this.fono = this.crud.dato[0].fono;
   }
 }
