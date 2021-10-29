@@ -81,13 +81,38 @@ export class RegistroPage implements OnInit {
   {
     // TAREA: enviar mensajes al usuario cuando el rut no esta
     await this.crud.obtener(txtRut.value);
-    this.rut = this.crud.dato[0].rut;
-    this.nombre = this.crud.dato[0].nombre;
-    this.fono = this.crud.dato[0].fono;
+
+    if(this.crud.dato == null)
+    {
+      const toast = await this.toast.create({
+        message: 'El rut ingresado no existe',
+        duration: 3000,
+        position: "middle",
+        color: "danger"
+      });
+      toast.present();
+      this.rut="";
+    }
+    else
+    {      
+      this.rut = this.crud.dato[0].rut;
+      this.nombre = this.crud.dato[0].nombre;
+      this.fono = this.crud.dato[0].fono;
+    }
+    this.listado = [];
+    txtRut.value = ""; 
   }
   async listar()
   {
     this.listado = this.crud.listar();
+  }
+
+  eliminar()
+  {
+    // Tarea: Preguntar al usuario quiere eliminar o no el registro
+    // enviar un mensaje (toast) mencionando que se elimino.
+    this.crud.eliminar(this.rut);
+    this.rut = "";
   }
 
 }

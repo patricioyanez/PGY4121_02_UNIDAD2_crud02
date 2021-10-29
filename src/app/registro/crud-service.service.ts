@@ -28,6 +28,7 @@ export class CrudServiceService {
 
   async obtener(rut: string)
   {
+    this.dato = null;
     await this.storage.forEach((v,k) => {    
       if(v[0].rut==rut)
       {        
@@ -44,5 +45,14 @@ export class CrudServiceService {
     this.storage.forEach((v, k) => { listado.push(v);});
     return listado;
   }
-
+  async eliminar(rut:string)
+  {
+    let key = null;
+    await this.storage.forEach((v,k) => 
+    {
+      if(v[0].rut == rut)
+        key = k;
+    })
+    this.storage.remove(key);
+  }
 }

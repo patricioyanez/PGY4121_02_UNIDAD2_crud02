@@ -30,6 +30,9 @@
     <ion-text color="primary">
       <h3>{{fono}}</h3>
     </ion-text>
+    <ion-button (click)="eliminar()">
+      <ion-icon slot="icon-only" name="trash"></ion-icon>
+    </ion-button>
   </div>
 
   <div *ngIf="listado.length > 0">
