@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudServiceService } from './crud-service.service';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
@@ -12,6 +12,7 @@ export class RegistroPage implements OnInit {
   fono: string;
   listado = [];
   constructor(private crud: CrudServiceService, 
+              private alert: AlertController,
               private toast: ToastController) { }
 
   ngOnInit() {
@@ -107,12 +108,30 @@ export class RegistroPage implements OnInit {
     this.listado = this.crud.listar();
   }
 
-  eliminar()
+  async eliminar()
   {
     // Tarea: Preguntar al usuario quiere eliminar o no el registro
     // enviar un mensaje (toast) mencionando que se elimino.
-    this.crud.eliminar(this.rut);
-    this.rut = "";
+    const alert = await this.alert.create({
+      cssClass: 'my-custom-class',
+      header: 'Eliminar rut',
+      message: '<strong>¿Está seguro de eliminar?</strong>',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Si',
+          handler: () => {
+            this.crud.eliminar(this.rut);
+            this.rut = "";
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 }
