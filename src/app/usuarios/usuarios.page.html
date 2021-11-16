@@ -1,9 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>usuarios</ion-title>
+    <ion-title>Usuarios</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+<div *ngIf="listado.length > 0">
 
+  <ion-list>
+    <div *ngFor="let item of listado" [routerLink]="['/detalle/', item.id]">
+      <ion-item>
+        <ion-label>{{item.name}}</ion-label>
+        <ion-label>{{item.username}}</ion-label>
+        <ion-label><ion-router-link href="./detalle/{{item.id}}">Ver</ion-router-link></ion-label>
+      </ion-item>
+
+    </div>
+  </ion-list>
+
+</div>
 </ion-content>

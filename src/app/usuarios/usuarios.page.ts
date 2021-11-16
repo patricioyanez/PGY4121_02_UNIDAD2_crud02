@@ -10,6 +10,7 @@ export class UsuariosPage implements OnInit {
   constructor(private api: ApirestService) { }
 
   ngOnInit() {
+    this.listar();
   }
   listar()
   {
